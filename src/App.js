@@ -16,21 +16,28 @@ function App() {
     // 버튼을 클릭했을 때 입력된 값이 다시 비어짐
     setToDo("");
     // currentArray를 받아왔고 새로운 array를 return 해줌
-    setToDos(currentArray => [toDo, ...currentArray])
+    setToDos((currentArray) => [toDo, ...currentArray]);
     console.log("list", toDos);
   };
   return (
     <div className="toDoBox">
-      <h1>My To Dos ({toDos.length})</h1>
+      <p>({toDos.length}) Tasks</p>
       <form onSubmit={onSubmit}>
         <input
+        className="input"
           onChange={onChange}
           value={toDo}
           type="text"
           placeholder="write your to do..."
         />
-        <button>Add To Do</button>
+        <button className="button">+</button>
       </form>
+      <hr />
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
